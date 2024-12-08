@@ -91,4 +91,4 @@ def exp(x):
 # `abs` is reserved
 def absval(x):
     x = raisenum(x)
-    return ADN(abs(x.real), x.deriv * (lambda x: (0 if x == 0 else ((-1, 1)[x > 0])))(x.real))
+    return ADN(abs(x.real), x.derived * (lambda x: (0 if x == 0 else ((-1, 1)[x > 0])))(x.real))
