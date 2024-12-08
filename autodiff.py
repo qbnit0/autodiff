@@ -48,6 +48,9 @@ class ADN:
     def __rpow__(self, other: float):
         return exp(self * ln(other))
 
+    def __abs__(self):
+        return ADN(abs(self.real), self.derived * (lambda x: (0 if x == 0 else ((-1, 1)[x > 0])))(self.real))
+
     def to_tuple(self):
         """Returns a tuple with the real and derived value i.e. (x, x')"""
         return (self.real, self.derived)
@@ -87,8 +90,3 @@ def ln(x):
 def exp(x):
     x = raisenum(x)
     return ADN(m.e ** x.real, x.derived * (m.e ** x.real))
-
-# `abs` is reserved
-def absval(x):
-    x = raisenum(x)
-    return ADN(abs(x.real), x.derived * (lambda x: (0 if x == 0 else ((-1, 1)[x > 0])))(x.real))
