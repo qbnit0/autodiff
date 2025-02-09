@@ -37,10 +37,10 @@ class ADN:
 
     def __truediv__(self, other):
         other = raisenum(other)
-        return ADN(self.real / other.real, (self.derived * other.real - self.real * other.derived) * (other.real)**2)
+        return ADN(self.real / other.real, (self.derived * other.real - self.real * other.derived) / (other.real)**2)
     def __rtruediv__(self, other):
         other = raisenum(other)
-        return ADN(other.real / self.real, (other.derived * self.real - other.real * self.derived) * (self.real)**2)
+        return ADN(other.real / self.real, (other.derived * self.real - other.real * self.derived) / (self.real)**2)
 
     def __pow__(self, other: float):
         return ADN(self.real ** other, self.derived * other * self.real ** (other-1))
